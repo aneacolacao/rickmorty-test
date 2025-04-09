@@ -13,7 +13,6 @@ const initialState: CharactersState = {
   loading: false,
   error: null,
   searchTerm: '',
-
 };
 
 // Thunk para obtener personajes

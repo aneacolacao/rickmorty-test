@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import styles from '@/styles/page.module.css';
 import CharactersManagement from '@/components/charactersManagement';
+import SelectedCharacter from '@/components/selectedCharacter';
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         </div>
 
         <div className={styles.charactersContainer}>
+          <SelectedCharacter />
           <CharactersManagement />
         </div>
       </main>

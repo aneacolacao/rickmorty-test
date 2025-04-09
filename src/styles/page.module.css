@@ -89,6 +89,7 @@
   .logo {
     padding: 0;
     max-width: 340px;
+    width: 90%;
   }
   /*Characters*/
   .charactersContainer {

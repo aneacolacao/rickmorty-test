@@ -6,7 +6,7 @@
   --color-text: #ffffff;
   --color-list: #1c1c1c;
   --color-card: #212121;
-  --color-secondary: #5B5454;
+  --color-secondary: #5b5454;
 }
 
 @media (prefers-color-scheme: dark) {

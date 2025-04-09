@@ -6,9 +6,9 @@ import { fetchCharacters } from '@/features/charactersSlice';
 import { setSelectedCharacter } from '@/features/selectedCharacterSlice';
 import CharacterCard from '@/components/characterCard';
 import styles from '@/styles/charactersManagement.module.css';
+import SearchBar from '@/components/searchBar';
 
 const CharactersManagement = () => {
-
   // Scrollbar
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollBy = (amount: number) => {
@@ -19,9 +19,7 @@ const CharactersManagement = () => {
 
   //Characters list
   const dispatch = useAppDispatch();
-  const { characters, loading, error} = useAppSelector(
-    (state) => state.characters
-  );
+  const { characters, loading, error } = useAppSelector((state) => state.characters);
   const selected = useAppSelector((state) => state.selectedCharacter.selected);
 
   //Preselect first character in the initial pageload
@@ -40,67 +38,56 @@ const CharactersManagement = () => {
 
   const searchTerm = useAppSelector((state) => state.characters.searchTerm);
   const charactersToShow = searchTerm
-    ? characters.filter((char) =>
-        char.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+    ? characters.filter((char) => char.name.toLowerCase().includes(searchTerm.toLowerCase()))
     : characters;
 
   return (
     <div className={styles.charactersManagement}>
-      <div className={styles.charactersSearch}>
+      <SearchBar />
 
-      </div>
-      
-        <button onClick={() => scrollBy(-100)} className={styles.scrollButton}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="20"
-            height="20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="scroll-icon"
-          >
-            <path d="M6 14 L12 8 L18 14" />
-          </svg>
-        </button>
-        <div 
-          ref={scrollRef}
-          className={`${styles.charactersImageList} ${styles.scrollContent}`}
+      <button onClick={() => scrollBy(-100)} className={styles.scrollButton}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="scroll-icon"
         >
-          {error && <p>Error: {error}</p>}
-          {charactersToShow.map((char) => {
-            return (
-              <div
-              key={char.id}
-              className={styles.characterCard}
-              >
-                <CharacterCard character={char} />
-              </div>
-            );
-          })}
-          {loading && <p className={styles.loadingText}>Cargando más personajes...</p>}
-        </div>
-        <button onClick={() => scrollBy(100)} className={styles.scrollButton}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="20"
-            height="20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="scroll-icon"
-          >
-            <path d="M6 10 L12 16 L18 10" />
-          </svg>
-        </button>
-      
+          <path d="M6 14 L12 8 L18 14" />
+        </svg>
+      </button>
+      <div ref={scrollRef} className={`${styles.charactersImageList} ${styles.scrollContent}`}>
+        {error && <p>Error: {error}</p>}
+        {charactersToShow.map((char) => {
+          return (
+            <div key={char.id} className={styles.characterCard}>
+              <CharacterCard character={char} />
+            </div>
+          );
+        })}
+        {loading && <p className={styles.loadingText}>Cargando más personajes...</p>}
+      </div>
+      <button onClick={() => scrollBy(100)} className={styles.scrollButton}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="scroll-icon"
+        >
+          <path d="M6 10 L12 16 L18 10" />
+        </svg>
+      </button>
     </div>
   );
 };
