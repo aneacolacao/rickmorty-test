@@ -1,7 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import styles from './page.module.css';
+import styles from '@/styles/page.module.css';
+import CharactersManagement from '@/components/charactersManagement';
 
 export default function Home() {
   return (
@@ -19,7 +20,9 @@ export default function Home() {
           />
         </div>
 
-        <div className={styles.charactersContainer}></div>
+        <div className={styles.charactersContainer}>
+          <CharactersManagement />
+        </div>
       </main>
       <footer className={styles.footer}></footer>
     </div>

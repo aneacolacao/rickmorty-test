@@ -1,0 +1,149 @@
+/*Characters Container*/
+.charactersManagement {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.selectedCharacter {
+  position: relative;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: white;
+  flex: 1;
+  box-shadow: 0px 15px 15px 10px #00000040 inset;
+}
+
+/*Characters Main Section*/
+.charactersSearch {
+  height: 20%;
+}
+
+.charactersListSection {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Characters List */
+.charactersImageList {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  height: 80%;
+  overflow-y: auto;
+}
+
+.characterCard h2 {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.characterCard {
+  width: 50%;
+  justify-items: center;
+  margin-bottom: 25px;
+}
+
+.characterCard > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-card);
+  padding: 5px 15px;
+  border-radius: 15px;
+  max-width: 130px;
+  height: 100%;
+  border: 2px solid var(--color-card);
+}
+
+/*Selected Character On List*/
+.characterCard > div.noSelectedCard {
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.characterCard > div.selectedCard {
+  border-color: var(--color-primary);
+}
+
+/* Scroll bar */
+.scrollContent {
+  flex: 1;
+  scrollbar-width: auto;
+  scrollbar-color: transparent transparent;
+}
+
+.scrollButton {
+  background-color: #7B7B7BB2;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  height: 30px;
+  width: 30px;
+  align-self: flex-end;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrollButton:hover {
+  color: var(--color-primary);
+}
+
+.scrollButton:active {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+
+/*********CSS MEDIA QUERIES************/
+/*Tablets and portrait orientation*/
+@media only screen and (max-width: 1024px) and (orientation: portrait) {
+  /*Characters Container*/
+  .charactersManagement {
+    order: 1;
+    height: 50%;
+  }
+
+  .selectedCharacter {
+    order: 2;
+    height: 50%;
+    border-radius: 20px;
+    box-shadow: 0px 15px 15px 10px #00000040 inset;
+  }
+
+  /*Characters*/
+  .charactersImageList {
+    margin-bottom: 30px;
+  }
+
+  /*Character Card*/
+  .characterCard > div {
+    max-width: 150px;
+    box-shadow: 15px 15px 30px 0px #191919;
+  }
+
+  .characterCard > div img {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Scroll bar */
+  .scrollButton {
+    display: none;
+  }
+}
