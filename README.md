@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rick & Morty App 
 
-## Getting Started
+Aplicación web que permite explorar personajes de Rick and Morty, seleccionar favoritos y ver sus detalles.
 
-First, run the development server:
+## Levantamiento de proyecto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 1. Instalar dependencias
+
+```console
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Poblar base de datos
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```console
+npm run seed
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Levantar el servidor JSON (json-server)
 
-## Learn More
+```console
+npm run server
+```
+Esto levantará el backend local en: http://localhost:3001
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Levantar aplicación
+```console
+npm run dev
+```
+Esto abrirá la app en: http://localhost:3000
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Pruebas unitarias
+La app incluye pruebas unitarias para componentes clave como:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Selección de personaje
+2. Visualización de favoritos
+3. Activación del ícono de favoritos
 
-## Deploy on Vercel
+Correr el comando
+```console
+npm run test
+```
+Las pruebas están configuradas con Jest y React Testing Library.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Desarrollo
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Cosas que más me gustaron
+Disfruté la parte de manejar los diferentes estados de los personajes y cómo se verían en el navegador dependiendo de la situación.
+
+### ¿Qué hubiera hecho con más tiempo?
+- Hubiera agregado Lazy Load en la lista de personajes
+- Manejar variables de entorno para las URLs que se ocupan en las llamadas al json-server
+- Hubiera agregado una librería con íconos en lugar de colocar directamente el SVG
+- Manejar la visibilidad de los botones del scroll a que desaparecieran cuando los elementos del buscador eran pocos
+
+### Pain Point
+En el json-server, en la sección de favoritos tenía personajes duplicados y no se controlaba correctamente la visualización del corazón (no se desactivaba), por lo que tuve que revisar previsamente que no estuviera en la lista de favoritos, antes de añadirlo.
