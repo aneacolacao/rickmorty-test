@@ -10,7 +10,8 @@
     "lint": "next lint",
     "prepare": "husky",
     "format": "prettier --write .",
-    "test": "jest --passWithNoTests",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "server": "json-server --watch db.json --port 3001",
     "seed": "tsx scripts/fetchAllCharacters.ts"
   },

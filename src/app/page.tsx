@@ -12,10 +12,10 @@ import FavoritesTab from '@/components/favoriteTab';
 
 export default function Home() {
   const dispatch = useAppDispatch();
-  
+
   useEffect(() => {
     dispatch(fetchCharacters());
-    dispatch(fetchFavorites()); 
+    dispatch(fetchFavorites());
   }, [dispatch]);
 
   return (
@@ -36,7 +36,7 @@ export default function Home() {
         <div className={styles.charactersContainer}>
           <SelectedCharacter />
           <CharactersManagement />
-          <FavoritesTab/>
+          <FavoritesTab />
         </div>
       </main>
       <footer className={styles.footer}></footer>

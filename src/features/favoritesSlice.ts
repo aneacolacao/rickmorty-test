@@ -51,10 +51,12 @@ const favoritesSlice = createSlice({
       })
       .addCase(toggleFavorite.fulfilled, (state, action) => {
         if (typeof action.payload === 'number' || typeof action.payload === 'string') {
-          state.favorites = state.favorites.filter(fav => String(fav.id) !== String(action.payload));
+          state.favorites = state.favorites.filter(
+            (fav) => String(fav.id) !== String(action.payload)
+          );
         } else {
           //Check favorite character isn't duplicated
-          const exists = state.favorites.find(fav => fav.id === action.payload.id);
+          const exists = state.favorites.find((fav) => fav.id === action.payload.id);
           if (!exists) {
             state.favorites.push(action.payload);
           }

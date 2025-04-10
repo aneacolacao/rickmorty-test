@@ -24,7 +24,7 @@ export const fetchCharacters = createAsyncThunk<Character[], void, { rejectValue
       if (!response.ok) {
         return thunkAPI.rejectWithValue(`Error ${response.status}: ${response.statusText}`);
       }
-      
+
       const data = await response.json();
       return data;
     } catch (error: unknown) {
