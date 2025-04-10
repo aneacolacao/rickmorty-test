@@ -1,6 +1,12 @@
-import { writeFile } from 'fs/promises';
+import { readFile, writeFile } from 'fs/promises';
 import { getCharacters } from 'rickmortyapi';
 import { Character } from '@/types/character';
+
+interface DBStructure {
+  characters: Character[];
+  favorites: Character[];
+  [key: string]: unknown;
+}
 
 async function fetchAllCharacters() {
   let allCharacters: Character[] = [];
@@ -18,12 +24,26 @@ async function fetchAllCharacters() {
     }
   }
 
-  const db = {
+  let currentDb: DBStructure = { characters: [], favorites: [] };
+
+  try {
+    const existingData = await readFile('db.json', 'utf-8');
+    currentDb = JSON.parse(existingData);
+  } catch {
+    console.warn('⚠️ No se pudo leer db.json actual. Se creará uno nuevo.');
+  }
+
+  if (!Array.isArray(currentDb.favorites)) {
+    currentDb.favorites = [];
+  }
+
+  const updatedDb = {
+    ...currentDb,
     characters: allCharacters,
   };
 
-  await writeFile('db.json', JSON.stringify(db, null, 2));
-  console.log(`✅ Guardados ${allCharacters.length} personajes en db.json`);
+  await writeFile('db.json', JSON.stringify(updatedDb, null, 2));
+  console.log(`✅ Guardados ${allCharacters.length} personajes y conservados favoritos`);
 }
 
 fetchAllCharacters().catch((error) => {

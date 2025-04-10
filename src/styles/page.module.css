@@ -46,6 +46,7 @@
   overflow-y: hidden;
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 
 /*Footer*/
@@ -79,7 +80,8 @@
   }
   .main {
     width: 100%;
-    padding: 30px 15px 70px 15px;
+    padding: 30px 15px 0px 15px;
+    height: calc(100% - 50px);
   }
   /*Logo*/
   .logoContainer {
